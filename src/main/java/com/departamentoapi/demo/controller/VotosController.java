@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -19,9 +20,9 @@ public class VotosController {
 
     private final VotosService votosService;
 
-    @GetMapping("/getvotos")
-    public ResponseEntity<List<VoteDTO>> getVotos() {
-        return new ResponseEntity<>(votosService.getVotos(),HttpStatus.OK);
+    @GetMapping("/getvotes")
+    public ResponseEntity<List<VoteDTO>> getVotes() {
+        return new ResponseEntity<>(votosService.getVotes(),HttpStatus.OK);
     }
 
     @PostMapping("/vote")
