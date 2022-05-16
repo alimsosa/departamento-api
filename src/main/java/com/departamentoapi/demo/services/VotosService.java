@@ -5,19 +5,30 @@ import com.departamentoapi.demo.domain.VoteDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class VotosService {
 
-    public VoteDTO getVotos(){
+    public List<VoteDTO> getVotos(){
+        List<VoteDTO> allVotes = new ArrayList<>();
         VoteDTO votito = new VoteDTO();
         votito.setCircuito("123");
         votito.setDepartamento("montevideo");
         votito.setFecha(new Date(System.currentTimeMillis()));
         votito.setLista("lista 12");
-        return votito;
+        VoteDTO votito2 = new VoteDTO();
+        votito2.setCircuito("123");
+        votito2.setDepartamento("montevideo");
+        votito2.setFecha(new Date(System.currentTimeMillis()));
+        votito2.setLista("lista 12");
+        allVotes.add(votito);
+        allVotes.add(votito2);
+        return allVotes;
     }
 
     public VotedOkDTO createVote(VoteDTO vote) {
