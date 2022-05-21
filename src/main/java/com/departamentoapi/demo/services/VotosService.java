@@ -1,14 +1,14 @@
 package com.departamentoapi.demo.services;
 
-import com.departamentoapi.demo.domain.VotedOkDTO;
+import com.departamentoapi.demo.controller.RestClient;
 import com.departamentoapi.demo.domain.VoteDTO;
+import com.departamentoapi.demo.domain.VotedOkDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -34,9 +34,16 @@ public class VotosService {
     }
 
     public VotedOkDTO createVote(VoteDTO vote) {
+
+        RestClient restClient = new RestClient();
+        restClient.callTokenApi();
+        ResponseEntity<String> call = restClient.callTokenApi();
         vote.setFecha(new Date(System.currentTimeMillis()));
         VotedOkDTO votedStatus = new VotedOkDTO();
         votedStatus.setConfirmation("Voted registered");
+        votedStatus.setToken("Token utilizado para el voto: "+call.getBody());
         return votedStatus;
     }
+
 }
+
