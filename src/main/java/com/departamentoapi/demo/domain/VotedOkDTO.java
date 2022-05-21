@@ -11,4 +11,5 @@ import java.util.Date;
 @EqualsAndHashCode
 public class VotedOkDTO {
     private String confirmation;
+    private String token;
 }
