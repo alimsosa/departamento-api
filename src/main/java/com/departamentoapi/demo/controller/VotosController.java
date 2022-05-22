@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VotosController {
 
-    private final VotosService votosService;
+    private final VotosService votosService = new VotosService();
 
     @GetMapping("/getvotes")
     public ResponseEntity<List<VoteDTO>> getVotes() {

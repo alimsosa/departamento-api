@@ -12,4 +12,16 @@ import java.util.Date;
 public class VotedOkDTO {
     private String confirmation;
     private String token;
+	public String getConfirmation() {
+		return confirmation;
+	}
+	public void setConfirmation(String confirmation) {
+		this.confirmation = confirmation;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
 }
