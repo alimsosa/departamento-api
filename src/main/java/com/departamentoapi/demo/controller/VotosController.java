@@ -1,8 +1,11 @@
 package com.departamentoapi.demo.controller;
 
+import com.departamentoapi.Repository.IVoteRepository;
 import com.departamentoapi.demo.domain.VotedOkDTO;
 import com.departamentoapi.demo.domain.VoteDTO;
+import com.departamentoapi.demo.services.IVotoRepoServices;
 import com.departamentoapi.demo.services.VotosService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +18,10 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class VotosController {
 
-    private final VotosService votosService = new VotosService();
+    private final VotosService votosService;
 
     @GetMapping("/getvotes")
     public ResponseEntity<List<VoteDTO>> getVotes() {
@@ -28,6 +31,12 @@ public class VotosController {
     @PostMapping("/vote")
     public ResponseEntity<VotedOkDTO> createVote(@RequestBody VoteDTO voto) {
         VotedOkDTO response = votosService.createVote(voto);
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
+    @PostMapping("/manyvotes")
+    public ResponseEntity<VotedOkDTO> createVote(@RequestBody List<VoteDTO> votos) {
+        VotedOkDTO response = votosService.multipleVotes(votos);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 }
