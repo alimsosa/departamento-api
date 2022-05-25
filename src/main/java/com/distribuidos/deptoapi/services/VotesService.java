@@ -38,7 +38,6 @@ public class VotesService {
     }
 
     public VotedOkDTO multipleVotes(List<VoteDTO> votesReceived) {
-        //votesReceived.forEach(v-> iVoteRepository.save(v));
         iVoteRepository.saveAll(votesReceived);
         VotedOkDTO votedStatus = new VotedOkDTO();
         votedStatus.setConfirmation("All votes registered");
