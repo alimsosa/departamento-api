@@ -30,7 +30,6 @@ public class VotesService {
         RestClient restClient = new RestClient();
         restClient.callTokenApi();
         ResponseEntity<String> call = restClient.callTokenApi();
-        vote.setId(12312L);
         iVoteRepository.save(vote);
         VotedOkDTO votedStatus = new VotedOkDTO();
         votedStatus.setConfirmation("Voted registered");
