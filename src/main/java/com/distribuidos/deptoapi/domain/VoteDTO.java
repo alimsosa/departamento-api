@@ -1,14 +1,13 @@
-package com.departamentoapi.demo.domain;
+package com.distribuidos.deptoapi.domain;
 
-import lombok.*;
-
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import java.util.Date;
 @Getter
 @Setter
 @Entity
@@ -17,13 +16,13 @@ public class VoteDTO {
     @Id
     @Column(name = "id")
     private Long id;
-	@Column(name = "nombrePartido")
+    @Column(name = "nombrePartido")
     private String nombre_partido;
-	@Column(name = "lista")
+    @Column(name = "lista")
     private String lista;
-	@Column(name = "idDepartamento")
+    @Column(name = "idDepartamento")
     private String departamento;
-	@Column(name = "idCircuito")
+    @Column(name = "idCircuito")
     private String circuito;
     private Date fecha;
 }

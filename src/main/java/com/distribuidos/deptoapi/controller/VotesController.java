@@ -1,12 +1,9 @@
-package com.departamentoapi.demo.controller;
+package com.distribuidos.deptoapi.controller;
 
-import com.departamentoapi.Repository.IVoteRepository;
-import com.departamentoapi.demo.domain.VotedOkDTO;
-import com.departamentoapi.demo.domain.VoteDTO;
-import com.departamentoapi.demo.services.IVotoRepoServices;
-import com.departamentoapi.demo.services.VotosService;
+import com.distribuidos.deptoapi.domain.VoteDTO;
+import com.distribuidos.deptoapi.domain.VotedOkDTO;
+import com.distribuidos.deptoapi.services.VotesService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,18 +11,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class VotosController {
+public class VotesController {
 
-    private final VotosService votosService;
+    private final VotesService votosService;
 
     @GetMapping("/getvotes")
     public ResponseEntity<List<VoteDTO>> getVotes() {
-        return new ResponseEntity<>(votosService.getVotes(),HttpStatus.OK);
+        return new ResponseEntity<>(votosService.getVotes(), HttpStatus.OK);
     }
 
     @PostMapping("/vote")

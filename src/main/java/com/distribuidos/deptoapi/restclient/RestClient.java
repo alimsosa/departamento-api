@@ -1,5 +1,4 @@
-package com.departamentoapi.demo.controller;
-
+package com.distribuidos.deptoapi.restclient;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
