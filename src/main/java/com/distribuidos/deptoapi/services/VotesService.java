@@ -20,10 +20,8 @@ public class VotesService {
     @Autowired
     IVotesRepository iVoteRepository;
 
-    private List<VoteDTO> votes;
-
     public List<VoteDTO> getVotes() {
-        return votes;
+        return iVoteRepository.findAll();
     }
 
     public VotedOkDTO createVote(VoteDTO vote) {
@@ -40,7 +38,7 @@ public class VotesService {
     }
 
     public VotedOkDTO multipleVotes(List<VoteDTO> votesReceived) {
-        votesReceived.forEach(v-> votes.add(v));
+        votesReceived.forEach(v-> iVoteRepository.save(v));
         VotedOkDTO votedStatus = new VotedOkDTO();
         votedStatus.setConfirmation("All votes registered");
         return votedStatus;
