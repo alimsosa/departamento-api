@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,6 +31,7 @@ public class VotesService {
         RestClient restClient = new RestClient();
         restClient.callTokenApi();
         ResponseEntity<String> call = restClient.callTokenApi();
+        vote.setFecha(new Date(System.currentTimeMillis()));
         iVoteRepository.save(vote);
         VotedOkDTO votedStatus = new VotedOkDTO();
         votedStatus.setConfirmation("Voted registered");
