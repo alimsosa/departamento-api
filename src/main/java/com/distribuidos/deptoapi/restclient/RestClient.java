@@ -14,7 +14,6 @@ public class RestClient {
 
     static RestTemplate restTemplate = new RestTemplate();
 
-
     public ResponseEntity<String> callTokenApi(){
         org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));

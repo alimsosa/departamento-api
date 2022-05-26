@@ -20,21 +20,28 @@ public class VotesService {
     @Autowired
     IVotesRepository iVoteRepository;
 
-    public List<VoteDTO> getVotes() {
+    public List<VoteDTO> getVotes(String key) {
         return iVoteRepository.findAll();
     }
 
-    public VotedOkDTO createVote(VoteDTO vote) {
-
-        RestClient restClient = new RestClient();
-        restClient.callTokenApi();
-        ResponseEntity<String> call = restClient.callTokenApi();
+    public VotedOkDTO createVote(VoteDTO vote) throws Exception {
+        //validate(vote);
         vote.setFecha(new Date(System.currentTimeMillis()));
         iVoteRepository.save(vote);
         VotedOkDTO votedStatus = new VotedOkDTO();
         votedStatus.setConfirmation("Voted registered");
-        votedStatus.setToken("Token utilizado para el voto: " + call.getBody());
         return votedStatus;
+    }
+
+    private void validate(VoteDTO vote) throws Exception {
+        String token = vote.getToken();
+        RestClient restClient = new RestClient();
+        restClient.callTokenApi();
+        ResponseEntity<String> call = restClient.callTokenApi();
+        if(token.equals(call.getBody()))
+            return;
+        else
+            throw new Exception("El token no coincide");
     }
 
     public VotedOkDTO multipleVotes(List<VoteDTO> votesReceived) {

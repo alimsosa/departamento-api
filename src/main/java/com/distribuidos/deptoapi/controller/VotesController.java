@@ -6,11 +6,9 @@ import com.distribuidos.deptoapi.services.VotesService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,13 +17,13 @@ public class VotesController {
 
     private final VotesService votosService;
 
-    @GetMapping("/getvotes")
-    public ResponseEntity<List<VoteDTO>> getVotes() {
-        return new ResponseEntity<>(votosService.getVotes(), HttpStatus.OK);
+    @GetMapping("/getvotes/{key}")
+    public ResponseEntity<List<VoteDTO>> getVotes(@PathVariable String key) {
+        return new ResponseEntity<>(votosService.getVotes(key), HttpStatus.OK);
     }
 
     @PostMapping("/vote")
-    public ResponseEntity<VotedOkDTO> createVote(@RequestBody VoteDTO voto) {
+    public ResponseEntity<VotedOkDTO> createVote(@RequestBody @Valid VoteDTO voto) throws Exception {
         VotedOkDTO response = votosService.createVote(voto);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
