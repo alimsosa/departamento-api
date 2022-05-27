@@ -1,5 +1,6 @@
 package com.distribuidos.deptoapi.controller;
 
+import com.distribuidos.deptoapi.domain.CypherUtils;
 import com.distribuidos.deptoapi.domain.VoteDTO;
 import com.distribuidos.deptoapi.domain.VotedOkDTO;
 import com.distribuidos.deptoapi.services.VotesService;
@@ -16,6 +17,7 @@ import java.util.List;
 public class VotesController {
 
     private final VotesService votosService;
+
 
     @GetMapping("/getvotes/{key}")
     public ResponseEntity<List<VoteDTO>> getVotes(@PathVariable String key) {

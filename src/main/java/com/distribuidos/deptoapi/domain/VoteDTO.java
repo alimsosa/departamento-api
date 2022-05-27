@@ -45,5 +45,19 @@ public class VoteDTO {
     @NotBlank(message = "Required: token")
     @NotEmpty(message = "Required: token")
     private String token;
+
+    @Column(name = "encryptID")
+    private byte[] encryptID;
+    @Column(name = "encryptLista")
+    private byte[] encryptLista;
+    @Column(name = "encryptNombrePartido")
+    private byte[] encryptNombrePartido;
+    @Column(name = "encryptIdDepartamento")
+    private byte[] encryptIdDepartamento;
+    @Column(name = "encryptIdCircuito")
+    private byte[] encryptIdCircuito;
+    @Column(name = "encryptToken")
+    private byte[] encryptToken;
+
 }
 
