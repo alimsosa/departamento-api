@@ -33,7 +33,7 @@ public class VotesService {
         return votedStatus;
     }
 
-    private void validate(VoteDTO vote) throws Exception {
+/*    private void validate(VoteDTO vote) throws Exception {
         String token = vote.getToken();
         RestClient restClient = new RestClient();
         restClient.callTokenApi();
@@ -42,7 +42,7 @@ public class VotesService {
             return;
         else
             throw new Exception("El token no coincide");
-    }
+    }*/
 
     public VotedOkDTO multipleVotes(List<VoteDTO> votesReceived) {
         iVoteRepository.saveAll(votesReceived);

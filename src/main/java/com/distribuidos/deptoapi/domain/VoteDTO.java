@@ -42,8 +42,5 @@ public class VoteDTO {
     @NotEmpty(message = "Required: circuito")
     private String circuito;
     private Date fecha;
-    @NotBlank(message = "Required: token")
-    @NotEmpty(message = "Required: token")
-    private String token;
 }
 
