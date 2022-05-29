@@ -1,4 +1,6 @@
-package com.distribuidos.deptoapi.domain;
+package com.distribuidos.deptoapi.Utils;
+
+import lombok.Data;
 
 import java.security.*;
 
@@ -7,16 +9,15 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-
+@Data
 public class CypherUtils {
 
-    private static PrivateKey privKey;
-    private static PublicKey publKey;
+    public static PrivateKey privKey;
+    public static PublicKey publKey;
     private static Cipher cypher;
 
 
     public static byte[] encryptString(String stringToEncrypt) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-
 
 
         //Initializing a Cipher object
@@ -34,6 +35,7 @@ public class CypherUtils {
 
         return cipherText;
     }
+
     public static byte[] decrypt(byte[] cipherText) throws IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
 
         //Initializing the same cipher for decryption
@@ -55,6 +57,7 @@ public class CypherUtils {
         //Creating a Cipher object
         cypher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
     }
+
     public static void generateKeys() throws NoSuchAlgorithmException {
         //Creating KeyPair generator object
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
@@ -67,7 +70,4 @@ public class CypherUtils {
         privKey = pair.getPrivate();
         publKey = pair.getPublic();
     }
-
-
-
 }

@@ -25,7 +25,7 @@ public class VoteDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @Column(name = "nombrePartido")
+    @Column(name = "nombre_partido")
     @NotBlank(message = "Required: nombre_partido")
     @NotEmpty(message = "Required: nombre_partido")
     private String nombre_partido;
@@ -33,31 +33,17 @@ public class VoteDTO {
     @NotBlank(message = "Required: lista")
     @NotEmpty(message = "Required: lista")
     private String lista;
-    @Column(name = "idDepartamento")
+    @Column(name = "departamento")
     @NotBlank(message = "Required: departamento")
     @NotEmpty(message = "Required: departamento")
     private String departamento;
-    @Column(name = "idCircuito")
+    @Column(name = "circuito")
     @NotBlank(message = "Required: circuito")
     @NotEmpty(message = "Required: circuito")
     private String circuito;
+    @Column(name = "fecha")
     private Date fecha;
-    @NotBlank(message = "Required: token")
-    @NotEmpty(message = "Required: token")
-    private String token;
-
-    @Column(name = "encryptID")
-    private byte[] encryptID;
-    @Column(name = "encryptLista")
-    private byte[] encryptLista;
-    @Column(name = "encryptNombrePartido")
-    private byte[] encryptNombrePartido;
-    @Column(name = "encryptIdDepartamento")
-    private byte[] encryptIdDepartamento;
-    @Column(name = "encryptIdCircuito")
-    private byte[] encryptIdCircuito;
-    @Column(name = "encryptToken")
-    private byte[] encryptToken;
-
+    @NotNull( message = "El dni no puede ser null")
+    private Long dni;
 }
 

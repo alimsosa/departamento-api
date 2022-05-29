@@ -1,6 +1,6 @@
 package com.distribuidos.deptoapi;
 
-import com.distribuidos.deptoapi.domain.CypherUtils;
+import com.distribuidos.deptoapi.Utils.CypherUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
