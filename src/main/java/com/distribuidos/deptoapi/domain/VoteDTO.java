@@ -25,22 +25,25 @@ public class VoteDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @Column(name = "nombrePartido")
+    @Column(name = "nombre_partido")
     @NotBlank(message = "Required: nombre_partido")
     @NotEmpty(message = "Required: nombre_partido")
     private String nombre_partido;
-    @Column(name = "lista")
+    @Column(name = "lista",length = 2000)
     @NotBlank(message = "Required: lista")
     @NotEmpty(message = "Required: lista")
     private String lista;
-    @Column(name = "idDepartamento")
+    @Column(name = "departamento")
     @NotBlank(message = "Required: departamento")
     @NotEmpty(message = "Required: departamento")
     private String departamento;
-    @Column(name = "idCircuito")
+    @Column(name = "circuito")
     @NotBlank(message = "Required: circuito")
     @NotEmpty(message = "Required: circuito")
     private String circuito;
+    @Column(name = "fecha")
     private Date fecha;
+    @NotNull( message = "El dni no puede ser null")
+    private Long dni;
 }
 
