@@ -1,6 +1,5 @@
 package com.distribuidos.deptoapi;
 
-import com.distribuidos.deptoapi.Utils.CypherUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,9 +10,6 @@ import java.security.NoSuchAlgorithmException;
 public class DeptoapiApplication {
 
 	public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException {
-
-		CypherUtils.generateCypher();
-		CypherUtils.generateKeys();
 
 		SpringApplication.run(DeptoapiApplication.class, args);
 

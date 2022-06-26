@@ -6,3 +6,5 @@
 *.properties
 .idea/runConfigurations.xml
 pom.xml
+*.properties
+target/classes/application.properties

@@ -29,7 +29,7 @@ public class VoteDTO {
     @NotBlank(message = "Required: nombre_partido")
     @NotEmpty(message = "Required: nombre_partido")
     private String nombre_partido;
-    @Column(name = "lista")
+    @Column(name = "lista",length = 2000)
     @NotBlank(message = "Required: lista")
     @NotEmpty(message = "Required: lista")
     private String lista;

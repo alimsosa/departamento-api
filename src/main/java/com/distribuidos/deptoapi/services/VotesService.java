@@ -1,6 +1,6 @@
 package com.distribuidos.deptoapi.services;
 
-import com.distribuidos.deptoapi.Utils.CypherUtils;
+import com.distribuidos.deptoapi.domain.CypherEncrypter;
 import com.distribuidos.deptoapi.domain.DniDTO;
 import com.distribuidos.deptoapi.domain.VoteDTO;
 import com.distribuidos.deptoapi.domain.VotedOkDTO;
@@ -11,6 +11,13 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +40,7 @@ public class VotesService {
     public VotedOkDTO createVote(VoteDTO vote) throws Exception {
         validate(vote);
         vote.setFecha(new Date(System.currentTimeMillis()));
+        this.encryptVote(vote);
         iVoteRepository.save(vote);
         VotedOkDTO votedStatus = new VotedOkDTO();
         votedStatus.setConfirmation("Voted registered");
@@ -60,5 +68,9 @@ public class VotesService {
         VotedOkDTO votedStatus = new VotedOkDTO();
         votedStatus.setConfirmation("All votes registered");
         return votedStatus;
+    }
+    private void encryptVote(VoteDTO vote) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, IOException, InvalidKeySpecException, InvalidKeyException {
+        vote.setNombre_partido(CypherEncrypter.encrypt(vote.getNombre_partido().getBytes()));
+        vote.setLista(CypherEncrypter.encrypt(vote.getLista().getBytes()));
     }
 }
