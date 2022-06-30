@@ -1,6 +1,7 @@
 package com.distribuidos.deptoapi.controller;
 
 import com.distribuidos.deptoapi.domain.VoteDTO;
+import com.distribuidos.deptoapi.domain.VoteToSaveDTO;
 import com.distribuidos.deptoapi.domain.VotedOkDTO;
 import com.distribuidos.deptoapi.services.VotesService;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ public class VotesController {
 
 
     @GetMapping("/getvotes")
-    public ResponseEntity<List<VoteDTO>> getVotes() {
+    public ResponseEntity<List<VoteToSaveDTO>> getVotes() {
         return new ResponseEntity<>(votosService.getVotes(), HttpStatus.OK);
     }
 
@@ -29,9 +30,4 @@ public class VotesController {
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
-    @PostMapping("/manyvotes")
-    public ResponseEntity<VotedOkDTO> createVote(@RequestBody List<VoteDTO> votos) {
-        VotedOkDTO response = votosService.multipleVotes(votos);
-        return new ResponseEntity<>(response,HttpStatus.OK);
-    }
 }

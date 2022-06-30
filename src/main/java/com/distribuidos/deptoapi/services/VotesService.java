@@ -1,9 +1,6 @@
 package com.distribuidos.deptoapi.services;
 
-import com.distribuidos.deptoapi.domain.CypherEncrypter;
-import com.distribuidos.deptoapi.domain.DniDTO;
-import com.distribuidos.deptoapi.domain.VoteDTO;
-import com.distribuidos.deptoapi.domain.VotedOkDTO;
+import com.distribuidos.deptoapi.domain.*;
 import com.distribuidos.deptoapi.repository.IDniRepository;
 import com.distribuidos.deptoapi.repository.IVotesRepository;
 import lombok.AllArgsConstructor;
@@ -33,15 +30,19 @@ public class VotesService {
     @Autowired
     IDniRepository dniRepository;
 
-    public List<VoteDTO> getVotes() {
+    public List<VoteToSaveDTO> getVotes() {
         return iVoteRepository.findAll();
     }
 
     public VotedOkDTO createVote(VoteDTO vote) throws Exception {
         validate(vote);
-        vote.setFecha(new Date(System.currentTimeMillis()));
         this.encryptVote(vote);
-        iVoteRepository.save(vote);
+        VoteToSaveDTO votetosave = new VoteToSaveDTO();
+        votetosave.setNombre_partido(vote.getNombre_partido());
+        votetosave.setCircuito(vote.getCircuito());
+        votetosave.setDepartamento(vote.getDepartamento());
+        votetosave.setLista(vote.getLista());
+        iVoteRepository.save(votetosave);
         VotedOkDTO votedStatus = new VotedOkDTO();
         votedStatus.setConfirmation("Voted registered");
         return votedStatus;
@@ -58,17 +59,6 @@ public class VotesService {
     }
 
 
-    public VotedOkDTO multipleVotes(List<VoteDTO> votesReceived) {
-        iVoteRepository.saveAll(votesReceived);
-        for(VoteDTO vote : votesReceived){
-            DniDTO dni = new DniDTO();
-            dni.setDni(vote.getDni());
-            dniRepository.save(dni);
-        }
-        VotedOkDTO votedStatus = new VotedOkDTO();
-        votedStatus.setConfirmation("All votes registered");
-        return votedStatus;
-    }
     private void encryptVote(VoteDTO vote) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, IOException, InvalidKeySpecException, InvalidKeyException {
         vote.setNombre_partido(CypherEncrypter.encrypt(vote.getNombre_partido().getBytes()));
         vote.setLista(CypherEncrypter.encrypt(vote.getLista().getBytes()));
